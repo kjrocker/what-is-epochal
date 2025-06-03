@@ -16,7 +16,7 @@ interface HistoryItem {
 }
 
 export default function EpochalDemo() {
-  const [input, setInput] = createSignal("");
+  const [input, setInput] = createSignal("1st century BC");
   const [history, setHistory] = createSignal<HistoryItem[]>([]);
 
   const result = () => epochize(input());
@@ -81,7 +81,7 @@ export default function EpochalDemo() {
                 disabled={!input().trim()}
                 class="absolute right-3 top-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 disabled:opacity-50"
               >
-                PARSE
+                SAVE
               </button>
             </div>
           </form>
