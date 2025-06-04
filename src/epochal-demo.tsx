@@ -69,23 +69,18 @@ export default function EpochalDemo() {
       <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20" />
 
       {/* GitHub Corner with Triangular Cutout */}
-      <div class="absolute top-0 right-0 z-20">
-        <div
-          class="w-20 h-20 bg-gradient-to-r from-white via-purple-200 to-blue-200 backdrop-blur-sm border-l-2 border-b-2 border-white/40"
-          style={{
-            "clip-path": "polygon(100% 0%, 0% 0%, 100% 100%)",
-          }}
-        />
+      <div class="absolute top-6 right-6 z-20">
         <a
-          href="https://github.com/your-repo/epochal"
+          href="https://github.com/kjrocker/epochal"
           target="_blank"
           rel="noopener noreferrer"
-          class="absolute top-2 right-3 flex items-center gap-2 text-gray-800 hover:text-black transition-colors duration-200 group"
+          class="flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-white via-purple-200 to-blue-200 hover:from-gray-100 hover:via-purple-300 hover:to-blue-300 transition-all duration-200 group relative overflow-hidden"
         >
-          <span class="text-xs font-medium opacity-0 py-2 group-hover:opacity-100 transition-all duration-200 group-hover:bg-gradient-to-r group-hover:from-purple-500 px-2 group-hover:to-blue-500 group-hover:rounded">
-            Source
-          </span>
-          <GitHub class="w-8 h-8 p-1 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300 rounded-full" />
+          {/* <div class="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-black/80 to-blue-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200" /> */}
+          <div class="relative flex items-center gap-2 text-black transition-all duration-200">
+            <GitHub class="w-4 h-4 " />
+            <span class="text-sm font-medium ">Github</span>
+          </div>
         </a>
       </div>
 
@@ -99,9 +94,9 @@ export default function EpochalDemo() {
             String → Time
           </p>
           <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-            Try anything:{" "}
-            <span class="text-purple-300">"4th millennium BC"</span> to{" "}
-            <span class="text-blue-300">"mid 18th century to 1989"</span>
+            Try anything: maybe {" "}
+            <span class="text-purple-300">"4th millennium BC"</span> or{" "}
+            <span class="text-blue-300">"mid 1789 to 1799"</span>
           </p>
         </div>
 
