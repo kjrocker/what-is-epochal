@@ -1,12 +1,5 @@
 import { epochize } from "epochal";
-import {
-  batch,
-  createSignal,
-  For,
-  Match,
-  Show,
-  Switch,
-} from "solid-js";
+import { batch, createSignal, For, Match, Show, Switch } from "solid-js";
 
 interface HistoryItem {
   id: string;
@@ -14,6 +7,26 @@ interface HistoryItem {
   result: [Date, Date] | null;
   timestamp: Date;
 }
+
+const GitHub = (props: { class?: string }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={props.class}
+    >
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+      <path d="M9 18c-4.51 2-5-2-7-2"></path>
+    </svg>
+  );
+};
 
 export default function EpochalDemo() {
   const [input, setInput] = createSignal("1st century BC");
@@ -46,7 +59,7 @@ export default function EpochalDemo() {
       year: "numeric",
       month: "short",
       day: "numeric",
-      era: "short"
+      era: "short",
     });
   };
 
@@ -54,6 +67,27 @@ export default function EpochalDemo() {
     <div class="min-h-screen bg-black text-white relative overflow-hidden flex flex-col">
       {/* Background gradient */}
       <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20" />
+
+      {/* GitHub Corner with Triangular Cutout */}
+      <div class="absolute top-0 right-0 z-20">
+        <div
+          class="w-20 h-20 bg-gradient-to-r from-white via-purple-200 to-blue-200 backdrop-blur-sm border-l-2 border-b-2 border-white/40"
+          style={{
+            "clip-path": "polygon(100% 0%, 0% 0%, 100% 100%)",
+          }}
+        />
+        <a
+          href="https://github.com/your-repo/epochal"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute top-2 right-3 flex items-center gap-2 text-gray-800 hover:text-black transition-colors duration-200 group"
+        >
+          <span class="text-xs font-medium opacity-0 py-2 group-hover:opacity-100 transition-all duration-200 group-hover:bg-gradient-to-r group-hover:from-purple-500 px-2 group-hover:to-blue-500 group-hover:rounded">
+            Source
+          </span>
+          <GitHub class="w-8 h-8 p-1 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300 rounded-full" />
+        </a>
+      </div>
 
       <div class="relative z-10 container mx-auto px-6 py-12 flex-1 flex flex-col">
         {/* Dynamic Header */}
@@ -63,6 +97,11 @@ export default function EpochalDemo() {
           </h1>
           <p class="text-2xl md:text-3xl font-light text-gray-300 tracking-wide">
             String → Time
+          </p>
+          <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
+            Try anything:{" "}
+            <span class="text-purple-300">"4th millennium BC"</span> to{" "}
+            <span class="text-blue-300">"mid 18th century to 1989"</span>
           </p>
         </div>
 
@@ -96,9 +135,15 @@ export default function EpochalDemo() {
               }
             >
               <Match when={!input().trim()}>
-                <div class="text-6xl md:text-7xl leading-[1.8em] font-black text-transparent bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text">Waiting for input...</div>
+                <div class="text-6xl md:text-7xl leading-[1.8em] font-black text-transparent bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text">
+                  Waiting for input...
+                </div>
               </Match>
-              <Match when={result() === null}><div class="text-6xl md:text-7xl leading-[1.8em] font-black text-transparent bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text">Keep typing...</div></Match>
+              <Match when={result() === null}>
+                <div class="text-6xl md:text-7xl leading-[1.8em] font-black text-transparent bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text">
+                  Keep typing...
+                </div>
+              </Match>
               <Match when={Array.isArray(result())}>
                 <div class="space-y-6">
                   <div class="text-6xl md:text-7xl leading-[1.8em] font-black text-transparent bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text">
@@ -128,9 +173,7 @@ export default function EpochalDemo() {
             </div>
 
             <div class="overflow-y-auto max-h-[33vh]">
-              <div
-                class="flex flex-row flex-wrap gap-4 pb-4"
-              >
+              <div class="flex flex-row flex-wrap gap-4 pb-4">
                 <For each={history()}>
                   {(item) => {
                     return (
@@ -140,7 +183,9 @@ export default function EpochalDemo() {
                         </div>
                         {item.result ? (
                           <div class="text-xs text-green-400">
-                            {formatDate(item.result[0])} to<br/>{formatDate(item.result[1])}
+                            {formatDate(item.result[0])} to
+                            <br />
+                            {formatDate(item.result[1])}
                           </div>
                         ) : (
                           <div class="text-xs text-red-400">NULL</div>
