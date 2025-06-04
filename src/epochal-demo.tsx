@@ -76,7 +76,6 @@ export default function EpochalDemo() {
           rel="noopener noreferrer"
           class="flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-white via-purple-200 to-blue-200 hover:from-gray-100 hover:via-purple-300 hover:to-blue-300 transition-all duration-200 group relative overflow-hidden"
         >
-          {/* <div class="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-black/80 to-blue-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200" /> */}
           <div class="relative flex items-center gap-2 text-black transition-all duration-200">
             <GitHub class="w-4 h-4 " />
             <span class="text-sm font-medium ">Github</span>
